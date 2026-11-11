@@ -54,7 +54,7 @@ def deliver(tool: Any, kind: str, model: str, result: TaskResult) -> Generator[A
     lines = [f"Result {i + 1}: {u}" for i, u in enumerate(result.urls)]
     note = "Result links are kept for 30 days."
     if not_attached:
-        note += " Some files were too large to attach here; use the links."
+        note += " Some files could not be attached here (too large or not on apimodels.app storage); use the links."
     yield tool.create_text_message("\n".join(lines + [note]))
 
 

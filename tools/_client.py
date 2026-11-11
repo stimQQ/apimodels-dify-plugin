@@ -12,6 +12,7 @@ import re
 import time
 from dataclasses import dataclass, field
 from typing import Any
+from urllib.parse import urlparse
 
 import requests
 
@@ -20,6 +21,15 @@ USER_AGENT = "apimodels-dify-plugin/0.1.0"
 POLL_SECONDS = 5
 # Larger results are not attached to the Dify message; the URL is returned instead.
 MAX_ATTACH_BYTES = 50 * 1024 * 1024
+# Result files are only fetched from apimodels.app storage (r2.apimodels.app). Links on any
+# other host are returned as links and never fetched by the plugin.
+ATTACH_HOST_SUFFIX = ".apimodels.app"
+
+
+def is_attachable_url(url: str) -> bool:
+    parsed = urlparse(str(url or ""))
+    host = (parsed.hostname or "").lower()
+    return parsed.scheme == "https" and host.endswith(ATTACH_HOST_SUFFIX)
 
 # Ids in the public model list that are not text/image-to-image or text/image-to-video
 # generation (downloaders, face detection, lip-sync helpers) or that are not suitable for
@@ -168,9 +178,16 @@ class Client:
 
     @staticmethod
     def download(url: str) -> tuple[bytes, str] | None:
-        """Fetch a result file to attach it in Dify. Returns None when it is too large or unreachable."""
+        """Fetch a result file to attach it in Dify.
+
+        Returns None when the link is not on apimodels.app storage, too large or unreachable.
+        """
+        if not is_attachable_url(url):
+            return None
         try:
-            with requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=120, stream=True) as resp:
+            with requests.get(
+                url, headers={"User-Agent": USER_AGENT}, timeout=120, stream=True, allow_redirects=False
+            ) as resp:
                 if resp.status_code != 200:
                     return None
                 size = int(resp.headers.get("Content-Length") or 0)

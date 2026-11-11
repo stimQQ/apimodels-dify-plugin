@@ -57,7 +57,7 @@ Usage is billed per generated image or per second of video to your apimodels.app
 ## Limits and notes
 
 - Result links are kept for 30 days. The files attached to the Dify message are copies; save the ones you need.
-- Results larger than 50 MB are not attached; the tool returns the link instead.
+- Only result files on apimodels.app storage (`r2.apimodels.app`) are attached, up to 50 MB each; anything else is returned as a link and not fetched by the plugin.
 - Input files (reference images, first / last frames) are uploaded to apimodels.app storage so the models can read them.
 - Content moderation by the model providers can refuse some prompts or images. Refused jobs are not charged.
 - Not every model accepts every input. If a combination is not supported, the API answers with an error that names the problem.
