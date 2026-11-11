@@ -1,0 +1,47 @@
+identity:
+  name: get_task
+  author: apimodels
+  label:
+    en_US: Get Task
+    zh_Hans: 查询任务
+description:
+  human:
+    en_US: Check an image or video task by its ID and get the result once it is ready. Waits up to 4 minutes.
+    zh_Hans: 按任务 ID 查询图片或视频任务，完成后取回结果。最多等待 4 分钟。
+  llm: Checks an image or video task by its ID and returns the result files once the task has finished, or says it is still running.
+parameters:
+  - name: task_id
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Task ID
+      zh_Hans: 任务 ID
+    human_description:
+      en_US: The task ID returned by Generate Image or Generate Video.
+      zh_Hans: 生成图片或生成视频返回的任务 ID。
+    llm_description: The task ID returned by Generate Image or Generate Video.
+  - name: kind
+    type: select
+    required: false
+    form: llm
+    default: video
+    label:
+      en_US: Task type
+      zh_Hans: 任务类型
+    human_description:
+      en_US: Whether the task is an image or a video.
+      zh_Hans: 任务是图片还是视频。
+    llm_description: '"video" for a video task, "image" for an image task.'
+    options:
+      - value: video
+        label:
+          en_US: Video
+          zh_Hans: 视频
+      - value: image
+        label:
+          en_US: Image
+          zh_Hans: 图片
+extra:
+  python:
+    source: tools/get_task.py

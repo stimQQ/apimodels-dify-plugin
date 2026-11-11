@@ -1,0 +1,156 @@
+identity:
+  name: generate_image
+  author: apimodels
+  label:
+    en_US: Generate Image
+    zh_Hans: 生成图片
+description:
+  human:
+    en_US: Generate or edit images with any image model on apimodels.app. Waits up to 5 minutes and returns the image files and their links.
+    zh_Hans: 用 apimodels.app 上任意图片模型生成或编辑图片。最多等待 5 分钟，返回图片文件和链接。
+  llm: Generates or edits images from a text prompt, optionally with reference images. Returns the image files and links. If it takes longer than 5 minutes it returns a task ID for the Get Task tool.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: Describe the image you want, or the edit to make to the reference images.
+      zh_Hans: 描述想要的图片，或对参考图要做的修改。
+    llm_description: A description of the image to generate, or of the edit to apply to the reference images.
+  - name: model
+    type: dynamic-select
+    required: true
+    form: llm
+    label:
+      en_US: Model
+      zh_Hans: 模型
+    human_description:
+      en_US: The list comes live from apimodels.app, so new models appear on their own. Prices are on apimodels.app/pricing.
+      zh_Hans: 列表实时取自 apimodels.app，新上架的模型会自动出现。价格见 apimodels.app/pricing。
+    llm_description: The apimodels.app image model ID. Use gpt-image-2.6-flare unless the user names another model.
+  - name: images
+    type: files
+    required: false
+    form: llm
+    label:
+      en_US: Reference images
+      zh_Hans: 参考图
+    human_description:
+      en_US: Optional. Images to edit or combine according to the prompt.
+      zh_Hans: 可选。按提示词修改或融合的图片。
+    llm_description: Optional images to edit or combine according to the prompt.
+  - name: image_urls
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Reference image links
+      zh_Hans: 参考图链接
+    human_description:
+      en_US: Optional. Public image links, separated by commas.
+      zh_Hans: 可选。公开可访问的图片链接，多个用英文逗号分隔。
+    llm_description: Optional public links to reference images, separated by commas.
+  - name: aspect_ratio
+    type: select
+    required: false
+    form: form
+    default: auto
+    label:
+      en_US: Aspect ratio
+      zh_Hans: 画幅比例
+    human_description:
+      en_US: Each model supports its own set of ratios.
+      zh_Hans: 每个模型支持的比例不同。
+    options:
+      - value: auto
+        label:
+          en_US: auto
+      - value: "1:1"
+        label:
+          en_US: "1:1"
+      - value: "16:9"
+        label:
+          en_US: "16:9"
+      - value: "9:16"
+        label:
+          en_US: "9:16"
+      - value: "4:3"
+        label:
+          en_US: "4:3"
+      - value: "3:4"
+        label:
+          en_US: "3:4"
+      - value: "3:2"
+        label:
+          en_US: "3:2"
+      - value: "2:3"
+        label:
+          en_US: "2:3"
+      - value: "21:9"
+        label:
+          en_US: "21:9"
+  - name: resolution
+    type: select
+    required: false
+    form: form
+    default: auto
+    label:
+      en_US: Resolution
+      zh_Hans: 分辨率
+    human_description:
+      en_US: Higher resolutions cost more. Not every model offers every resolution.
+      zh_Hans: 分辨率越高越贵，不是每个模型都支持全部档位。
+    options:
+      - value: auto
+        label:
+          en_US: auto
+      - value: 1K
+        label:
+          en_US: 1K
+      - value: 2K
+        label:
+          en_US: 2K
+      - value: 4K
+        label:
+          en_US: 4K
+  - name: quality
+    type: select
+    required: false
+    form: form
+    default: auto
+    label:
+      en_US: Quality
+      zh_Hans: 质量
+    human_description:
+      en_US: Used by GPT Image models. Higher quality costs more.
+      zh_Hans: GPT Image 系列使用，质量越高越贵。
+    options:
+      - value: auto
+        label:
+          en_US: auto
+      - value: low
+        label:
+          en_US: low
+      - value: medium
+        label:
+          en_US: medium
+      - value: high
+        label:
+          en_US: high
+  - name: extra
+    type: string
+    required: false
+    form: form
+    label:
+      en_US: Extra parameters (JSON)
+      zh_Hans: 额外参数（JSON）
+    human_description:
+      en_US: 'Optional model-specific fields passed through as-is, for example {"seed": 42} or {"output_format": "png"}. See the model page on apimodels.app/docs.'
+      zh_Hans: '可选，原样透传的模型专属字段，例如 {"seed": 42} 或 {"output_format": "png"}。见 apimodels.app/docs 上的模型文档。'
+extra:
+  python:
+    source: tools/generate_image.py
