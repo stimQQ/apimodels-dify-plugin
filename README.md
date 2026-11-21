@@ -6,7 +6,7 @@
 **Source:** https://github.com/stimQQ/apimodels-dify-plugin
 **Contact:** support@apimodels.app
 
-Generate and edit images and videos in Dify workflows, chatflows and agents with the image and video models on [apimodels.app](https://apimodels.app/?utm_source=dify&utm_medium=referral): GPT Image 2 / 2.5 / 2.6, Seedream 4.5 / 5.0 / 5.5, Nano Banana, Gemini image models, Qwen Image, Kling, MiniMax H3 Image, Seedance 2.0 / 2.5, Kling 4.0, Wan 3.0, MiniMax H3, Veo 3.1, Vidu Q4, LTX-2.3 and others. One API key covers all of them.
+Generate and edit images and videos in Dify workflows, chatflows and agents with the image and video models on [apimodels.app](https://apimodels.app/?utm_source=dify&utm_medium=referral): GPT Image 2 / 2.5 / 2.6, Seedream 4.5 / 5.0 / 5.5, Nano Banana, Gemini image models, Qwen Image, Kling, MiniMax H3 Image, Seedance 2.0 / 2.5, Kling 4.0, Wan 3.0, MiniMax H3, Veo 3.1, LTX-2.3 and others. One API key covers all of them.
 
 ## Tools
 

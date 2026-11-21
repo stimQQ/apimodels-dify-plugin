@@ -52,7 +52,7 @@ class GenerateVideoTool(Tool):
                 raise ApiError("A last frame needs a first frame.")
             if first:
                 # first_frame_url is the platform's documented field (Seedance, Wan, MiniMax H3, Kling 4.0,
-                # Vidu, Muse, Gemini Omni). A few model families read the first frame from another field.
+                # Muse, Gemini Omni). A few model families read the first frame from another field.
                 lowered = model.lower()
                 body["first_frame_url"] = first
                 if lowered in FIRST_FRAME_AS_IMAGE:

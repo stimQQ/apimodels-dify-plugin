@@ -117,8 +117,8 @@ parameters:
       en_US: Last frame
       zh_Hans: 尾帧图
     human_description:
-      en_US: Optional. Needs a first frame. Supported by Seedance, Kling, MiniMax H3 Lite, Vidu and others.
-      zh_Hans: 可选，需要同时给首帧。Seedance、可灵、MiniMax H3 Lite、Vidu 等支持。
+      en_US: Optional. Needs a first frame. Supported by Seedance, Kling, MiniMax H3 Lite and others.
+      zh_Hans: 可选，需要同时给首帧。Seedance、可灵、MiniMax H3 Lite 等支持。
     llm_description: Optional image the video should end on. Only with a first frame.
   - name: last_frame_url
     type: string
@@ -139,8 +139,8 @@ parameters:
       en_US: Reference images
       zh_Hans: 参考图
     human_description:
-      en_US: Optional, up to 9. Keeps characters, products or style consistent (Seedance, Kling, MiniMax H3, Vidu and others). Cannot be combined with a first frame.
-      zh_Hans: 可选，最多 9 张。用于保持人物、商品或风格一致（Seedance、可灵、MiniMax H3、Vidu 等支持）。不能和首帧同时用。
+      en_US: Optional, up to 9. Keeps characters, products or style consistent (Seedance, Kling, MiniMax H3 and others). Cannot be combined with a first frame.
+      zh_Hans: 可选，最多 9 张。用于保持人物、商品或风格一致（Seedance、可灵、MiniMax H3 等支持）。不能和首帧同时用。
     llm_description: Optional reference images for characters, products or style. Not together with a first frame.
   - name: extra
     type: string
